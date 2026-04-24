@@ -1,0 +1,52 @@
+================================================================================
+                  PANDUAN LENGKAP SISTEM BONDAA POS
+                     (Sistem Kasir Modern & Simpel)
+================================================================================
+
+Dokumen ini adalah panduan teknis dan operasional untuk mengelola, menjalankan, 
+dan memodifikasi aplikasi BONDAA POS.
+
+--------------------------------------------------------------------------------
+1. INFORMASI UMUM
+--------------------------------------------------------------------------------
+BONDAA POS adalah sistem aplikasi kasir (Point of Sale) yang dirancang dengan 
+antarmuka Sidebar yang bersih dan profesional. Menggunakan skema warna 
+Royal Blue dan Silver untuk kesan teknologi yang modern.
+
+Lokasi Proyek: C:\laragon\www\bondaa\
+
+--------------------------------------------------------------------------------
+2. PANDUAN MENJALANKAN APLIKASI
+--------------------------------------------------------------------------------
+1. Buka Laragon.
+2. Klik "Start All".
+3. Pastikan Database "db_bondaa" sudah dibuat di phpMyAdmin.
+4. Jalankan perintah di terminal:
+   cd C:\laragon\www\bondaa
+   php artisan migrate --seed
+   php artisan serve
+
+--------------------------------------------------------------------------------
+3. PERUBAHAN TEMA
+--------------------------------------------------------------------------------
+Tema aplikasi ini menggunakan Sidebar di sisi kiri.
+Warna utama (Blue & Silver) diatur melalui variabel CSS di:
+resources/views/layouts/app.blade.php
+
+--------------------------------------------------------------------------------
+4. KONFIGURASI DATABASE
+--------------------------------------------------------------------------------
+File: .env
+DB_DATABASE=db_bondaa
+
+--------------------------------------------------------------------------------
+5. FITUR UTAMA
+--------------------------------------------------------------------------------
+- Dashboard Statistik
+- Terminal Kasir Utama
+- Riwayat Transaksi Lengkap
+- Manajemen Produk (Stok & Harga)
+
+================================================================================
+           Sistem BONDAA POS - Modern, Cepat, dan Handal.
+================================================================================

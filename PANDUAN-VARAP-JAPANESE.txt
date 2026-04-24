@@ -1,0 +1,170 @@
+================================================================================
+                  PANDUAN LENGKAP SISTEM VARAP JAPANESE
+                     (Sistem Manajemen Kasir Elegan)
+================================================================================
+
+Dokumen ini adalah panduan teknis dan operasional untuk mengelola, menjalankan, 
+dan memodifikasi aplikasi Varap Japanese. Harap dibaca dengan saksama.
+
+--------------------------------------------------------------------------------
+1. INFORMASI UMUM
+--------------------------------------------------------------------------------
+Varap Japanese adalah sistem aplikasi kasir (Point of Sale) berbasis web yang 
+dirancang dengan antarmuka elegan bergaya Jepang (Wabi-Sabi, Bento Grid) dan 
+mendukung tema gelap (Dark Mode) dengan aksen Kurenai (Crimson Red).
+Aplikasi ini dikembangkan menggunakan framework Laravel (PHP) dan telah 
+mendukung tampilan responsif untuk berbagai ukuran perangkat.
+
+Lokasi Proyek: C:\laragon\www\ARAP_JAPAN\
+
+
+--------------------------------------------------------------------------------
+2. PANDUAN MENJALANKAN APLIKASI
+--------------------------------------------------------------------------------
+Untuk menjalankan aplikasi secara lokal pada komputer Anda:
+1. Buka aplikasi Laragon.
+2. Klik tombol "Start All" dan pastikan layanan Apache dan MySQL berjalan.
+3. Buka Terminal (Command Prompt / PowerShell).
+4. Arahkan ke direktori proyek:
+   cd C:\laragon\www\ARAP_JAPAN
+5. Jalankan perintah server lokal Laravel:
+   php artisan serve
+6. Buka peramban web (browser) seperti Google Chrome atau Microsoft Edge.
+7. Akses alamat berikut: http://127.0.0.1:8000
+
+
+--------------------------------------------------------------------------------
+3. INFORMASI MASUK (LOGIN) DEFAULT
+--------------------------------------------------------------------------------
+Aplikasi ini memiliki akun administrator (Owner) bawaan untuk masuk ke dalam sistem:
+
+Alamat Email : owner@cashier.com
+Kata Sandi   : password
+
+Akun ini memiliki hak akses penuh terhadap Dasbor, Kasir Utama, Riwayat Transaksi, 
+dan Kelola Produk.
+
+
+--------------------------------------------------------------------------------
+4. STRUKTUR MENU & TATA LETAK NAVBAR
+--------------------------------------------------------------------------------
+Sistem ini menggunakan navigasi utama (Top Navbar) di bagian atas. Berikut adalah 
+penjelasan masing-masing menu:
+
+- Dasbor             : Halaman ringkasan bisnis, menampilkan statistik pendapatan harian.
+- Kasir Utama        : Terminal penjualan utama tempat terjadinya proses transaksi.
+- Riwayat Transaksi  : Daftar seluruh catatan transaksi operasional yang telah sukses.
+- Kelola Produk      : Pusat kendali untuk menambah, mengubah, atau menghapus barang.
+
+
+--------------------------------------------------------------------------------
+5. FITUR RESPONSIF (AKSES DARI HP / TABLET)
+--------------------------------------------------------------------------------
+Varap Japanese telah dioptimalkan secara otomatis untuk penggunaan di perangkat mobile:
+- Hamburger Menu : Pada layar kecil, menu atas akan disembunyikan. Klik ikon tiga
+                   garis horizontal (☰) di sudut kanan atas untuk membuka menu.
+- Terminal Kasir : Jika diakses melalui HP, terminal kasir otomatis berubah tata letaknya
+                   menjadi vertikal sehingga lebih nyaman dioperasikan dengan sentuhan.
+- Tabel Fleksibel: Tabel dengan data panjang dapat digeser ke kiri dan kanan.
+
+
+--------------------------------------------------------------------------------
+6. CARA MENGUBAH TEMA & ESTETIKA (WARNA UTAMA)
+--------------------------------------------------------------------------------
+Desain antarmuka diatur menggunakan variabel CSS yang terpusat. Anda dapat mengubah 
+skema warna dengan sangat mudah:
+
+1. Buka file tata letak utama: 
+   C:\laragon\www\ARAP_JAPAN\resources\views\layouts\app.blade.php
+2. Cari bagian `:root` pada baris atas di dalam tag `<style>`.
+3. Anda akan melihat baris kode seperti:
+   --primary: #E53935;
+   --bg-color: #121212;
+
+Contoh jika Anda ingin mengubah warna merah menjadi warna lain:
+Ubah baris `--primary` menjadi kode warna hex yang diinginkan.
+
+Jika ingin mengubah nama aplikasi (Branding):
+Masih di file `app.blade.php`, cari teks `<h2>VARAP <span>JAPANESE</span></h2>` 
+di dalam struktur `<header class="navbar">` dan ganti menjadi nama bisnis Anda.
+
+
+--------------------------------------------------------------------------------
+7. CARA KERJA TERMINAL KASIR (TRANSAKSI)
+--------------------------------------------------------------------------------
+1. Masuk ke aplikasi dan pilih menu "Kasir Utama".
+2. Di sebelah kiri, Anda akan melihat Katalog Produk. Anda dapat menggunakan pencarian.
+3. Klik pada produk yang ingin dibeli pelanggan. 
+4. Anda dapat mengatur jumlah barang di dalam Daftar Belanja di sebelah kanan.
+5. Pada kolom "Diterima (Rp)", masukkan jumlah uang yang diberikan oleh pelanggan.
+6. Sistem akan menghitung jumlah kembalian secara otomatis.
+7. Klik tombol "Konfirmasi Transaksi" untuk menyelesaikan pembayaran.
+8. Stok produk akan berkurang secara otomatis.
+
+
+--------------------------------------------------------------------------------
+8. PANDUAN MENAMBAH PRODUK BARU
+--------------------------------------------------------------------------------
+1. Masuk ke aplikasi dan pilih menu "Kelola Produk".
+2. Klik tombol "+ Tambah Produk Baru" di sudut kanan atas.
+3. Isi formulir spesifikasi produk.
+4. Klik tombol "Simpan Produk Baru".
+
+
+--------------------------------------------------------------------------------
+9. STRUKTUR DIREKTORI PENTING
+--------------------------------------------------------------------------------
+C:\laragon\www\ARAP_JAPAN\
+├── .env                    : Konfigurasi utama aplikasi (Database, Nama App, dll).
+├── app/
+│   ├── Http/Controllers/   : Tempat logika aplikasi berada.
+│   └── Models/             : Struktur penghubung ke tabel database.
+├── database/
+│   ├── migrations/         : Skema pembuatan tabel database.
+│   └── seeders/            : Data awal (seperti akun default dan kategori).
+├── resources/
+│   └── views/              : SELURUH TAMPILAN ANTARMUKA (UI) ADA DI SINI.
+│       ├── layouts/        : Template utama yang memuat Top Navbar.
+│       ├── cashier/        : Tampilan Terminal Penjualan.
+│       ├── products/       : Tampilan Daftar & Form Tambah Produk.
+│       └── welcome.blade.php : Halaman landing utama bergaya Bento Grid.
+└── routes/
+    └── web.php             : Pengaturan alamat URL aplikasi.
+
+
+--------------------------------------------------------------------------------
+10. KONFIGURASI DATABASE (.env)
+--------------------------------------------------------------------------------
+Jika Anda perlu mengubah koneksi database, buka file `.env` di folder utama.
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=arap          <- Nama Database di MySQL
+DB_USERNAME=root          
+DB_PASSWORD=              
+
+Jika Anda mengubah nama database, buat database baru di phpMyAdmin, 
+lalu jalankan perintah: php artisan migrate
+
+
+--------------------------------------------------------------------------------
+11. PERINTAH ARTISAN YANG SERING DIGUNAKAN (MELALUI TERMINAL)
+--------------------------------------------------------------------------------
+php artisan serve
+- Menjalankan server lokal agar web dapat diakses.
+
+php artisan migrate
+- Menerapkan struktur tabel baru ke dalam database.
+
+php artisan migrate:fresh --seed
+- MENGHAPUS seluruh isi database dan mengisinya ulang dengan data bawaan. 
+
+php artisan optimize:clear
+- Membersihkan cache sistem.
+
+
+================================================================================
+           Sistem ini telah dikustomisasi ke tema Varap Japanese.
+                     Selamat mengelola bisnis Anda!
+================================================================================
